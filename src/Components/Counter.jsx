@@ -1,40 +1,87 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Display from './Display';
-//import ButtonPad from './ButtonPad';
 
-class Counter extends Component {
-  state = { count: 0 };
+const Counter = () => {
+  const [count, setCount] = useState(0);
 
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
+  const incrementOne = () => {
+    setCount(count + 1);
   };
 
-  handleDecrement = () => {
-    let Decr = this.state.count;
-    if (Decr > 0) {
-      this.setState({ count: this.state.count - 1 });
-    }
+  const incrementTwo = () => {
+    setCount(count + 2);
   };
 
-  handleReset = () => {
-    this.setState({ count: 0 });
+  const incrementFive = () => {
+    setCount(count + 5);
   };
 
-  render() {
-    return (
-      <div className='counter'>
-        <span> {this.formatCount()}</span>
-        <Display />
-        <button onClick={this.handleIncrement}>Increment</button>
-        <button onClick={this.handleDecrement}>Decrement</button>
-        <button onClick={this.handleReset}>Reset</button>
-      </div>
-    );
-  }
-  formatCount() {
-    const { count } = this.state;
-    return count === 0 ? 'Zero' : count;
-  }
-}
+  const decrementOne = () => {
+    setCount(count - 1);
+  };
+
+  const decrementTwo = () => {
+    setCount(count - 2);
+  };
+
+  const decrementFive = () => {
+    setCount(count - 5);
+  };
+
+  const reset = () => {
+    setCount(count * 0);
+  };
+
+  return (
+    <div className='counter'>
+      <Display count={count} />
+      <h1>
+        <button
+          style={{ backgroundColor: 'yellow', margin: 10 }}
+          onClick={incrementOne}
+        >
+          Increment
+        </button>
+        <button
+          style={{ backgroundColor: 'yellow', margin: 10 }}
+          onClick={decrementOne}
+        >
+          Decrement
+        </button>
+        <button style={{ backgroundColor: 'grey', margin: 10 }} onClick={reset}>
+          Reset
+        </button>
+      </h1>
+      <h1>
+        <button
+          style={{ backgroundColor: 'green', margin: 10, fontSize: 20 }}
+          onClick={incrementTwo}
+        >
+          Increment(+2)
+        </button>
+        <button
+          style={{ backgroundColor: 'green', margin: 10, fontSize: 20 }}
+          onClick={decrementTwo}
+        >
+          Decrement(-2)
+        </button>
+      </h1>
+      <h1>
+        <button
+          style={{ backgroundColor: 'red', margin: 10, fontSize: 20 }}
+          onClick={incrementFive}
+        >
+          Increment(+5)
+        </button>
+        <button
+          style={{ backgroundColor: 'red', margin: 10, fontSize: 20 }}
+          onClick={decrementFive}
+        >
+          Decrement(-5)
+        </button>
+      </h1>
+    </div>
+  );
+};
 
 export default Counter;
